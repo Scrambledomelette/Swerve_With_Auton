@@ -32,13 +32,13 @@ public class JoystickCommand extends CommandBase {
 
     @Override
     public void execute() {
-        xSpeed = -xAxis.get();
+        xSpeed = xAxis.get();
         ySpeed = yAxis.get();
         zSpeed = zAxis.get();
         if (xSpeed < 0.1 && xSpeed > -.1) {
             xSpeed = 0;
         } 
-        chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(ySpeed,xSpeed, zSpeed, swerveSubsystem.getGyroRotation());
+        chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, zSpeed, swerveSubsystem.getGyroRotation());
         SwerveModuleState[] swerveModuleStates = constants.driveKinematis.toSwerveModuleStates(chassisSpeeds);
         swerveSubsystem.setModuleStates(swerveModuleStates);
     }

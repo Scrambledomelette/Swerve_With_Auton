@@ -132,5 +132,11 @@ public class SwerveSubsystem extends SubsystemBase {
         updateOdometry();
         SmartDashboard.putNumber("Fancy Heading", getHeading());
         SmartDashboard.putString("Roboto Locato", getPose().getTranslation().toString());
+        SmartDashboard.putNumber("x", odometry.getPoseMeters().getX());
+        SmartDashboard.putNumber("y", odometry.getPoseMeters().getY());
+        SmartDashboard.putNumber("rotaion", odometry.getPoseMeters().getRotation().getDegrees());
+        SmartDashboard.putNumber("front left angle", frontLeft.getDegreeTurnPos());
+        SmartDashboard.putNumber("front left v", frontLeft.getDriveVelocity());
+        SmartDashboard.putNumber("front left rotation", frontLeft.getTurnPos() / Math.PI * 180);
     }
 }

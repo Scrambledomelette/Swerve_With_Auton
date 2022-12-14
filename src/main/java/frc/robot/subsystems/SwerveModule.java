@@ -59,7 +59,7 @@ public class SwerveModule {
 
     public double getTurnPos() {
         // return ((turnEncoder.getAbsolutePosition() * Math.PI * 2 ) - Math.toRadians(absoluteEncoderOffsetToDegrees));
-        return (getTurnRad() - Math.toRadians(absoluteEncoderOffsetToDegrees) - Math.PI);
+        return (getTurnRad() - Math.toRadians(absoluteEncoderOffsetToDegrees) /* - Math.PI */);
         // return ((turnEncoder.getAbsolutePosition() * Math.PI * 2 ) - Math.PI); 
     }
     
@@ -133,7 +133,7 @@ public class SwerveModule {
     public void setDesiredState(SwerveModuleState state) {
         optimizedState = SwerveModuleState.optimize(state, getState().angle);
         turnMotorPower = turningPID.calculate(getTurnPos(), optimizedState.angle.getRadians());
-        driveMotorPower = optimizedState.speedMetersPerSecond / 2;
+        driveMotorPower = optimizedState.speedMetersPerSecond /*/ 2*/;
         if (Math.abs(optimizedState.speedMetersPerSecond) < 0.01 ) {
             stop();
         }

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import javax.swing.SpinnerDateModel;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -23,6 +25,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.JoystickCommand;
+import frc.robot.commands.Spin;
 import frc.robot.commands.AutonCommands.AutonCommand;
 import frc.robot.subsystems.AutonSubsystem;
 import frc.robot.subsystems.SwerveModule;
@@ -70,7 +73,10 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     new JoystickButton(driverJoystick, 5).whenPressed(() -> swerveSubsystem.resetGyro());
+    new JoystickButton(driverJoystick, 2).whenPressed(new Spin(swerveSubsystem));
   }
+
+  
 
   public Command getAutonomousCommand() {
     // Initial trajectory setup
